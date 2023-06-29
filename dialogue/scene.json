@@ -1,0 +1,898 @@
+{
+    "format_version": "1.17",
+    "minecraft:npc_dialogue": {
+        "scenes": [
+            {
+                "scene_tag": "presidentshhh",
+                "npc_name": "Riz",
+                "text": "We can chat later.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "sportsshhh",
+                "npc_name": "Yasmin",
+                "text": "We are in a meeting.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "environshhh",
+                "npc_name": "Sam",
+                "text": "Go and talk to the boss.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "editorjoin",
+                "npc_name": "Paris",
+                "text": "Lets get started, talk to Sam, Yasmin, or Riz to find out what stories we have for you.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "dialogue change @e[tag=environnews] environinvestigate",
+                            "dialogue change @e[tag=sportsnews] sportsinvestigate",
+                            "dialogue change @e[tag=presidentnews] presidentinvestigate"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "environinvestigate",
+                "npc_name": "Sam",
+                "text": "Sustainability Program\n\nInvestigate why the school sustainability rating has dropped and what can be done to improve it.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Choose story",
+                        "commands": [
+                            "scoreboard players set @p story 1",
+                            "dialogue change @e[tag=guide] guidesus",
+                            "tp @e[tag=guide] -161 -58 -52"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "sportsinvestigate",
+                "npc_name": "Yasmin",
+                "text": "New Sport!\n\nThe school is looking for a new sport to add to the curriculum. Research each one and write about them.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Choose story",
+                        "commands": [
+                            "scoreboard players set @p story 2",
+                            "dialogue change @e[tag=guide] guidesportstart",
+                            "tp @e[tag=guide] -188 -58 -5"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "presidentinvestigate",
+                "npc_name": "Riz",
+                "text": "The Campaign\n\nOne of the schools presidential candidates has been hacked. Can you solve the mystery of who did it and why?",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Choose story",
+                        "commands": [
+                            "scoreboard players set @p story 3",
+                            "dialogue change @e[tag=guide] guidepresistart",
+                            "tp @e[tag=guide] -187 -58 -56"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "editorwrite",
+                "npc_name": "Paris",
+                "text": "Great, you are back. Are you ready to write the story?",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Yes",
+                        "commands": [
+                            "dialogue change @e[tag=editornews] editorfinish",
+                            "dialogue open @e[tag=editornews] @p editorfinish"
+                        ]
+                    },
+                    {
+                        "name": "I need more info",
+                        "commands": [
+                            "execute as @p run tp @p -157 -58 -53"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "editorfinish",
+                "npc_name": "Paris",
+                "text": "Place your reporters notebook on the lectern by the window.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "prerecycle",
+                "npc_name": "Mr. Khan",
+                "text": "Come back to me after Ms. O Connor has spoken to you.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "recyclenote",
+                "npc_name": "Mr. Khan",
+                "text": "Unfortunately it looks like we are behind on recycling. I do not see many recycling bins in the school, but I know we have them.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Take notes",
+                        "commands": [
+                            "function Story1/recyclingstart"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "recyclestatic",
+                "npc_name": "Mr. Khan",
+                "text": "There are still more bins to place.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "recycleafter",
+                "npc_name": "Mr. Khan",
+                "text": "Thanks for the help!",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "No problem",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "prelightbulb",
+                "npc_name": "Ms. O'Connor",
+                "text": "Help Ms. Frances before my task!",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "lightbulbnote",
+                "npc_name": "Ms. O'Connor",
+                "text": "The school is still using old energy inefficient lightbulbs. Energy usage seems to be very high. I heard that the school did buy new lightbulbs, but they have not installed them.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Take notes",
+                        "commands": [
+                            "function Story1/lightbulbstart"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "lightbulbstatic",
+                "npc_name": "Ms. O'Connor",
+                "text": "The energy usage is still high, did you get all the lightbulbs? Take some more if you need them.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "lightbulbafter",
+                "npc_name": "Ms. O'Connor",
+                "text": "I appreciate your time!",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "No problem",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "scene_tag": "guidestart",
+                "npc_name": "Guide",
+                "text": "Head to the meeting in the website editors room and talk to Paris.",
+                "on_open_commands": [
+                    ""
+                ],
+                "on_close_commands": [
+                    ""
+                ],
+                "buttons": [
+                    {
+                        "name": "Okay",
+                        "commands": [
+                            "execute as @p run tag @p add default"
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    },
+                    {
+                        "name": "",
+                        "commands": [
+                            ""
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
