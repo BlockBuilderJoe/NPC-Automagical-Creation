@@ -97,7 +97,7 @@ for row in npc_template: # Runs through the rows and creates a new list
 
 scene = {"format_version": Minecraft_version, "minecraft:npc_dialogue":{"scenes": scene}}
 
-with open(f'{os.path.dirname(__file__)}/dialogue/scene.json', 'w', encoding='utf-8') as f:
+with open(f'{os.path.dirname(__file__)}/scene.json', 'w', encoding='utf-8') as f:
     json.dump(scene, f, ensure_ascii=False, indent=4)
 
 with open(f"{os.path.dirname(__file__)}/README.txt", "w") as f:
