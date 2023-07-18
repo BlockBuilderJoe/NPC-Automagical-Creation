@@ -38,7 +38,7 @@ commands_6 = npc_template.iloc[:,17].str.split(', ')
 row_count = 0  # Creates the row count for reference
 
 scene_amount = len(npc_template) - 1  # Retrieves the length of the CSV file and removes the END OF FILE line
-
+print(scene_amount)
 scene = [] #Prepares a list for appending later on  
 
 text = [] #Prepares a list for the text to be added later on. 
@@ -46,39 +46,33 @@ text = [] #Prepares a list for the text to be added later on.
 npcreload = [] #Prepares a list for the text to be added later on.
 ############################################## Runs through the rows formatting a json file ##########################################################################################################################################
 
-for row in npc_template: # Runs through the rows and creates a new list
-
+for index, row in npc_template.iterrows(): # Runs through the rows and creates a new list
+    print(row_count)
     buttons1 = {
         "name": npc_template.iloc[:,6][row_count], 
         "commands": commands_1[row_count]
     }
-
     buttons2 = {
         "name": npc_template.iloc[:,8][row_count], 
         "commands": commands_2[row_count]
     }
-
     buttons3 = {
         "name": npc_template.iloc[:,10][row_count], 
         "commands": commands_3[row_count]
     }
-
     buttons4 = {
         "name": npc_template.iloc[:,12][row_count], 
         "commands": commands_4[row_count]
     }
-
     buttons5 = {
         "name": npc_template.iloc[:,14][row_count], 
         "commands": commands_5[row_count]
     }
-
     buttons6 = {
         "name": npc_template.iloc[:,16][row_count], 
         "commands": commands_6[row_count]
     }
     
-
     #writes the json file
     scene.append({'scene_tag':npc_template.iloc[:,0][row_count], 'npc_name': npc_template.iloc[:,2][row_count], 'text':npc_template.iloc[:,3][row_count], 'on_open_commands': on_open_commands[row_count], 'on_close_commands': on_close_commands[row_count], "buttons": [buttons1, buttons2, buttons3, buttons4, buttons5, buttons6]})
     #writes the text file lines for each row in the excel.
@@ -86,11 +80,11 @@ for row in npc_template: # Runs through the rows and creates a new list
     string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,2][row_count]} \n TAG = {npc_template.iloc[:,0][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,0][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,0][row_count]}] {npc_template.iloc[:,2][row_count]} \n \n ######################################################## \n "    
     text.append(string)
 
-    NPC_reload = f"dialogue change @e[{npc_template.iloc[:,0][row_count]}] {npc_template.iloc[:,2][row_count]}"
+    NPC_reload = f"dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]}"
     npcreload.append(NPC_reload)
-    
-    row_count = row_count + 1 # Increases the row count by 1
 
+    row_count = row_count + 1 # Increases the row count by 1
+    
     if row_count == scene_amount: # Tests to see if its the final row
         break
 ######################################### Final formatting #############################################################################################################################################
