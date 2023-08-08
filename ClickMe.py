@@ -77,7 +77,7 @@ for index, row in npc_template.iterrows(): # Runs through the rows and creates a
     scene.append({'scene_tag':npc_template.iloc[:,0][row_count], 'npc_name': npc_template.iloc[:,2][row_count], 'text':npc_template.iloc[:,3][row_count], 'on_open_commands': on_open_commands[row_count], 'on_close_commands': on_close_commands[row_count], "buttons": [buttons1, buttons2, buttons3, buttons4, buttons5, buttons6]})
     #writes the text file lines for each row in the excel.
     
-    string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,3][row_count]} \n TAG = {npc_template.iloc[:,1][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,1][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]} \n \n ######################################################## \n "    
+    string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,2][row_count]} \n TAG = {npc_template.iloc[:,1][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,1][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]} \n \n ######################################################## \n "    
     text.append(string)
 
     NPC_reload = f"dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]}"
