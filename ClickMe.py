@@ -37,8 +37,8 @@ commands_6 = npc_template.iloc[:,17].str.split(', ')
 
 row_count = 0  # Creates the row count for reference
 
-scene_amount = len(npc_template) - 1  # Retrieves the length of the CSV file and removes the END OF FILE line
-print(scene_amount)
+scene_amount = len(npc_template)
+
 scene = [] #Prepares a list for appending later on  
 
 text = [] #Prepares a list for the text to be added later on. 
