@@ -75,7 +75,9 @@ for index, row in npc_template.iterrows(): # Runs through the rows and creates a
     #replace apostrophes with apostrophes
     npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("’", "'")
     npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("‘", "'")
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace(" ", "'")
+    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace(" ", "")
+    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("...", f"...")
+
     
     #writes the json file
     scene.append({'scene_tag':npc_template.iloc[:,0][row_count], 'npc_name': npc_template.iloc[:,2][row_count], 'text':npc_template.iloc[:,3][row_count], 'on_open_commands': on_open_commands[row_count], 'on_close_commands': on_close_commands[row_count], "buttons": [buttons1, buttons2, buttons3, buttons4, buttons5, buttons6]})
