@@ -44,11 +44,11 @@ for index, row in npc_template.iterrows(): #Runs through the rows in the excel f
 
     if npc_template.iloc[:,2][row_count]: #Checks if the npc name is empty
         translated_lines.append(npc_template.iloc[:,2][row_count] + "=")
-        scene.append("npc_name: " + {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]})
+        scene.append("npc_name: " + json.dumps({"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}))
 
     if npc_template.iloc[:,3][row_count]: #Checks if the npc text is empty
         translated_lines.append(npc_template.iloc[:,3][row_count] + "=")
-        scene.append("text: " + {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]})
+        scene.append("npc_text: " + json.dumps({"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}))
     if npc_template.iloc[:,4][row_count]: #Checks if the on open commands are empty
         scene.append("on_open_commands: " + on_open_commands[row_count])
     if npc_template.iloc[:,5][row_count]: #Checks if the on close commands are empty
@@ -56,50 +56,46 @@ for index, row in npc_template.iterrows(): #Runs through the rows in the excel f
     if npc_template.iloc[:,6][row_count]: #Checks if the button 1 text is empty
         translated_lines.append(npc_template.iloc[:,6][row_count] + "=")
         buttons.append({
-        "name": { "rawtext": [{"translate": npc_template.iloc[:,6][row_count]}]}, 
+        "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,6][row_count]}]}), 
         "commands": commands_1[row_count]
         })
 
     if npc_template.iloc[:,8][row_count]: #Checks if the button 2 text is empty
         translated_lines.append(npc_template.iloc[:,8][row_count] + "=")
         buttons.append({
-            "name": { "rawtext": [{"translate": npc_template.iloc[:,8][row_count]}]},
+            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,8][row_count]}]}),
             "commands": commands_2[row_count]
         })
-       
 
     if npc_template.iloc[:,10][row_count]: #Checks if the button 3 text is empty
         translated_lines.append(npc_template.iloc[:,10][row_count] + "=")
         buttons.append({
-            "name": { "rawtext": [{"translate": npc_template.iloc[:,10][row_count]}]},
+            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,10][row_count]}]}),
             "commands": commands_3[row_count]
         })
         
-
     if npc_template.iloc[:,12][row_count]: #Checks if the button 4 text is empty
         translated_lines.append(npc_template.iloc[:,12][row_count] + "=")
         buttons.append({
-            "name": { "rawtext": [{"translate": npc_template.iloc[:,12][row_count]}]},
+            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,12][row_count]}]}),
             "commands": commands_4[row_count]
         })
        
-
     if npc_template.iloc[:,14][row_count]: #Checks if the button 5 text is empty
         translated_lines.append(npc_template.iloc[:,14][row_count] + "=")
         buttons.append({
-            "name": { "rawtext": [{"translate": npc_template.iloc[:,14][row_count]}]},
+            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,14][row_count]}]}),
             "commands": commands_5[row_count]
         })
         
-
     if npc_template.iloc[:,16][row_count]: #Checks if the button 6 text is empty
         translated_lines.append(npc_template.iloc[:,16][row_count] + "=")
         buttons.append({
-            "name": { "rawtext": [{"translate": npc_template.iloc[:,16][row_count]}]},
+            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,16][row_count]}]}),
             "commands": commands_6[row_count]
         })
     if buttons: #Checks if the buttons list is empty
-        scene.append("buttons: " + buttons)
+        scene.append("buttons: " + str(buttons))
         buttons = []
     else:
         print("Empty row")
