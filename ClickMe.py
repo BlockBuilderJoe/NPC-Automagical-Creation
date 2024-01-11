@@ -58,18 +58,20 @@ for index, row in npc_template.iterrows(): #Runs through the rows in the excel f
     if npc_template.iloc[:,5][row_count]: #Checks if the on close commands are empty
         scene_dict["on_close_commands"] = on_close_commands[row_count]
     commands = [commands_3, commands_4, commands_5, commands_6]
-
     # Add buttons to the scene_dict
     scene_dict["buttons"] = []
-    for i in range(6, 17, 2):
-        if npc_template.iloc[:,i][row_count]: #Checks if the button name is empty
+    for i in range(6, 18, 2): # If you want more buttons change this in future. 
+        if npc_template.iloc[:,i][row_count]: 
             translated_lines.append(npc_template.iloc[:,i][row_count] + "=")
+            commands = npc_template.iloc[:,i+1][row_count].split(', ')
             button = {
                 "name": {"rawtext": [{"translate": npc_template.iloc[:,i][row_count]}]},
-                "commands": commands[i//2 - 3][row_count]
+                "commands": commands
             }
             scene_dict["buttons"].append(button)
 
+   
+    
     scene.append(scene_dict) # Append the scene dictionary to the scene list
     #Writes the readme file for each row in the excel file.
     string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,2][row_count]} \n TAG = {npc_template.iloc[:,1][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,1][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]} \n \n ######################################################## \n "    
