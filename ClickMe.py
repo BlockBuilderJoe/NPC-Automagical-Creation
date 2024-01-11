@@ -39,67 +39,38 @@ npcreload = [] #Prepares a list for the npc reload function.
 ############################################## Runs through the rows formatting a json file ##########################################################################################################################################
 
 for index, row in npc_template.iterrows(): #Runs through the rows in the excel file
+    scene_dict = {} #Prepares a dictionary for the scene.json file.
+
     if npc_template.iloc[:,0][row_count]: #Checks if the scene tag is empty
-        scene.append("scene_tag: " + npc_template.iloc[:,0][row_count])
+        scene_dict["scene_tag"] = f"{npc_template.iloc[:,0][row_count]}"
 
     if npc_template.iloc[:,2][row_count]: #Checks if the npc name is empty
         translated_lines.append(npc_template.iloc[:,2][row_count] + "=")
-        scene.append("npc_name: " + json.dumps({"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}))
+        scene_dict["npc_name"] = {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}
 
     if npc_template.iloc[:,3][row_count]: #Checks if the npc text is empty
         translated_lines.append(npc_template.iloc[:,3][row_count] + "=")
-        scene.append("npc_text: " + json.dumps({"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}))
+        scene_dict["npc_text"] = {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}
+
     if npc_template.iloc[:,4][row_count]: #Checks if the on open commands are empty
-        scene.append("on_open_commands: " + on_open_commands[row_count])
+        scene_dict["on_open_commands"] = on_open_commands[row_count]
+
     if npc_template.iloc[:,5][row_count]: #Checks if the on close commands are empty
-        scene.append("on_close_commands: " + on_close_commands[row_count])
-    if npc_template.iloc[:,6][row_count]: #Checks if the button 1 text is empty
-        translated_lines.append(npc_template.iloc[:,6][row_count] + "=")
-        buttons.append({
-        "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,6][row_count]}]}), 
-        "commands": commands_1[row_count]
-        })
+        scene_dict["on_close_commands"] = on_close_commands[row_count]
+    commands = [commands_3, commands_4, commands_5, commands_6]
 
-    if npc_template.iloc[:,8][row_count]: #Checks if the button 2 text is empty
-        translated_lines.append(npc_template.iloc[:,8][row_count] + "=")
-        buttons.append({
-            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,8][row_count]}]}),
-            "commands": commands_2[row_count]
-        })
+    # Add buttons to the scene_dict
+    scene_dict["buttons"] = []
+    for i in range(6, 17, 2):
+        if npc_template.iloc[:,i][row_count]: #Checks if the button name is empty
+            translated_lines.append(npc_template.iloc[:,i][row_count] + "=")
+            button = {
+                "name": {"rawtext": [{"translate": npc_template.iloc[:,i][row_count]}]},
+                "commands": commands[i//2 - 3][row_count]
+            }
+            scene_dict["buttons"].append(button)
 
-    if npc_template.iloc[:,10][row_count]: #Checks if the button 3 text is empty
-        translated_lines.append(npc_template.iloc[:,10][row_count] + "=")
-        buttons.append({
-            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,10][row_count]}]}),
-            "commands": commands_3[row_count]
-        })
-        
-    if npc_template.iloc[:,12][row_count]: #Checks if the button 4 text is empty
-        translated_lines.append(npc_template.iloc[:,12][row_count] + "=")
-        buttons.append({
-            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,12][row_count]}]}),
-            "commands": commands_4[row_count]
-        })
-       
-    if npc_template.iloc[:,14][row_count]: #Checks if the button 5 text is empty
-        translated_lines.append(npc_template.iloc[:,14][row_count] + "=")
-        buttons.append({
-            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,14][row_count]}]}),
-            "commands": commands_5[row_count]
-        })
-        
-    if npc_template.iloc[:,16][row_count]: #Checks if the button 6 text is empty
-        translated_lines.append(npc_template.iloc[:,16][row_count] + "=")
-        buttons.append({
-            "name": json.dumps({ "rawtext": [{"translate": npc_template.iloc[:,16][row_count]}]}),
-            "commands": commands_6[row_count]
-        })
-    if buttons: #Checks if the buttons list is empty
-        scene.append("buttons: " + str(buttons))
-        buttons = []
-    else:
-        print("Empty row")
-        pass
+    scene.append(scene_dict) # Append the scene dictionary to the scene list
     #Writes the readme file for each row in the excel file.
     string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,2][row_count]} \n TAG = {npc_template.iloc[:,1][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,1][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]} \n \n ######################################################## \n "    
     text.append(string)
