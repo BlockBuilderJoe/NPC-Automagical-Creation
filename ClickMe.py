@@ -50,7 +50,7 @@ for index, row in npc_template.iterrows(): #Runs through the rows in the excel f
 
     if npc_template.iloc[:,3][row_count]: #Checks if the npc text is empty
         translated_lines.append(npc_template.iloc[:,3][row_count] + "=")
-        scene_dict["npc_text"] = {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}
+        scene_dict["text"] = {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}
 
     if npc_template.iloc[:,4][row_count]: #Checks if the on open commands are empty
         scene_dict["on_open_commands"] = on_open_commands[row_count]
