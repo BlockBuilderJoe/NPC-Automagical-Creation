@@ -14,15 +14,11 @@ abs_file_path = os.path.join(script_dir, rel_path)
 ##############################################  Inputs ###################################################################################################Minecraft_version = 1.17
 Minecraft_version = str(1.17)
 ############################################## Prepares CSV File for future processing ##################################################################################################
-
 npc_template = pd.read_excel(abs_file_path)  # Reads the Excel chart 
 npc_template = pd.DataFrame(npc_template)  #Make a dataframe
 #npc_template = npc_template.apply(lambda x: pd.Series(x.dropna().values)) # Drops NA
 npc_template = npc_template.fillna('') # Fills NaN with empty strings 
-
-
 ################ Splits the commands columns by ", " and makes them into a python list  #########################################################
-
 on_open_commands = npc_template.iloc[:,4].str.split(', ')
 on_close_commands = npc_template.iloc[:,5].str.split(', ')
 commands_1 = npc_template.iloc[:,7].str.split(', ')
@@ -31,98 +27,87 @@ commands_3 = npc_template.iloc[:,11].str.split(', ')
 commands_4 = npc_template.iloc[:,13].str.split(', ')
 commands_5 = npc_template.iloc[:,15].str.split(', ')
 commands_6 = npc_template.iloc[:,17].str.split(', ')
-
 ############################################## Count and for loop prep ##########################################################################################################################################
-
-
 row_count = 0  # Creates the row count for reference
-
 scene_amount = len(npc_template)
-
-scene = [] #Prepares a list for appending later on  
-translated_lines = [] #Prepares a list for appending later on
-
-text = [] #Prepares a list for the text to be added later on. 
-
-npcreload = [] #Prepares a list for the text to be added later on.
+############################################## Prepares the lists for appending later on ##########################################################################################################################################
+scene = [] #Prepares a list for the scene.json file.
+translated_lines = [] #Prepares a list for the en_US.lang file.
+buttons = [] #Prepares a list for the buttons to be added later on.
+text = [] #Prepares a list for the readme file.
+npcreload = [] #Prepares a list for the npc reload function.
 ############################################## Runs through the rows formatting a json file ##########################################################################################################################################
 
-for index, row in npc_template.iterrows():
-    #Appends the lines to the list if they are not empty, this is for the en_US.lang file.
-    if npc_template.iloc[:,2][row_count]:
+for index, row in npc_template.iterrows(): #Runs through the rows in the excel file
+    if npc_template.iloc[:,0][row_count]: #Checks if the scene tag is empty
+        scene.append({ "scene_tag": npc_template.iloc[:,0][row_count]})
+
+    if npc_template.iloc[:,2][row_count]: #Checks if the npc name is empty
         translated_lines.append(npc_template.iloc[:,2][row_count] + "=")
-    if npc_template.iloc[:,3][row_count]:
+        scene.append({ "npc_name": {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}})
+
+    if npc_template.iloc[:,3][row_count]: #Checks if the npc text is empty
         translated_lines.append(npc_template.iloc[:,3][row_count] + "=")
-    if npc_template.iloc[:,6][row_count]:
+        scene.append({ "text": {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}})
+
+    if npc_template.iloc[:,6][row_count]: #Checks if the button 1 text is empty
         translated_lines.append(npc_template.iloc[:,6][row_count] + "=")
-    if npc_template.iloc[:,8][row_count]:
-        translated_lines.append(npc_template.iloc[:,8][row_count] + "=")
-    if npc_template.iloc[:,10][row_count]:
-        translated_lines.append(npc_template.iloc[:,10][row_count] + "=")
-    if npc_template.iloc[:,12][row_count]:
-        translated_lines.append(npc_template.iloc[:,12][row_count] + "=")
-    if npc_template.iloc[:,14][row_count]:
-        translated_lines.append(npc_template.iloc[:,14][row_count] + "=")
-    if npc_template.iloc[:,16][row_count]:
-        translated_lines.append(npc_template.iloc[:,16][row_count] + "=")
-    #Formats the json translation for localisation.
-    npc_name_translate = {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}
-    text_translate = {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}
-    button1_translate = {"rawtext": [{"translate": npc_template.iloc[:,6][row_count]}]}
-    button2_translate = {"rawtext": [{"translate": npc_template.iloc[:,8][row_count]}]}
-    button3_translate = {"rawtext": [{"translate": npc_template.iloc[:,10][row_count]}]}
-    button4_translate = {"rawtext": [{"translate": npc_template.iloc[:,12][row_count]}]}
-    button5_translate = {"rawtext": [{"translate": npc_template.iloc[:,14][row_count]}]}
-    button6_translate = {"rawtext": [{"translate": npc_template.iloc[:,16][row_count]}]}
-
-    buttons1 = {
-        "name": button1_translate, 
+        buttons.append({
+        "name": { "rawtext": [{"translate": npc_template.iloc[:,6][row_count]}]}, 
         "commands": commands_1[row_count]
-    }
-    buttons2 = {
-        "name": button2_translate, 
-        "commands": commands_2[row_count]
-    }
-    buttons3 = {
-        "name": button3_translate, 
-        "commands": commands_3[row_count]
-    }
-    buttons4 = {
-        "name": button4_translate, 
-        "commands": commands_4[row_count]
-    }
-    buttons5 = {
-        "name": button5_translate, 
-        "commands": commands_5[row_count]
-    }
-    buttons6 = {
-        "name": button6_translate, 
-        "commands": commands_6[row_count]
-    }
+        })
 
-    #replace apostrophes with apostrophes
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("’", "'")
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("‘", "'")
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace(" ", "")
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("...", " . . .")
+    if npc_template.iloc[:,8][row_count]: #Checks if the button 2 text is empty
+        translated_lines.append(npc_template.iloc[:,8][row_count] + "=")
+        buttons.append({
+            "name": { "rawtext": [{"translate": npc_template.iloc[:,8][row_count]}]},
+            "commands": commands_2[row_count]
+        })
+       
 
-    #writes the json file
-    scene.append({
-        'scene_tag': npc_template.iloc[:,0][row_count], 
-        'npc_name': npc_name_translate, 
-        'text': text_translate, 
-        'on_open_commands': on_open_commands[row_count], 
-        'on_close_commands': on_close_commands[row_count], 
-        "buttons": [buttons1, buttons2, buttons3, buttons4, buttons5, buttons6]
-    })
+    if npc_template.iloc[:,10][row_count]: #Checks if the button 3 text is empty
+        translated_lines.append(npc_template.iloc[:,10][row_count] + "=")
+        buttons.append({
+            "name": { "rawtext": [{"translate": npc_template.iloc[:,10][row_count]}]},
+            "commands": commands_3[row_count]
+        })
+        
+
+    if npc_template.iloc[:,12][row_count]: #Checks if the button 4 text is empty
+        translated_lines.append(npc_template.iloc[:,12][row_count] + "=")
+        buttons.append({
+            "name": { "rawtext": [{"translate": npc_template.iloc[:,12][row_count]}]},
+            "commands": commands_4[row_count]
+        })
+       
+
+    if npc_template.iloc[:,14][row_count]: #Checks if the button 5 text is empty
+        translated_lines.append(npc_template.iloc[:,14][row_count] + "=")
+        buttons.append({
+            "name": { "rawtext": [{"translate": npc_template.iloc[:,14][row_count]}]},
+            "commands": commands_5[row_count]
+        })
+        
+
+    if npc_template.iloc[:,16][row_count]: #Checks if the button 6 text is empty
+        translated_lines.append(npc_template.iloc[:,16][row_count] + "=")
+        buttons.append({
+            "name": { "rawtext": [{"translate": npc_template.iloc[:,16][row_count]}]},
+            "commands": commands_6[row_count]
+        })
+    if buttons: #Checks if the buttons list is empty
+        scene.append({"buttons": buttons})
+        buttons = []
+    else:
+        print("Empty row")
+        pass
+    #Writes the readme file for each row in the excel file.
     string = f"######################################################## \n INSTRUCTIONS FOR: \n NAME = {npc_template.iloc[:,2][row_count]} \n TAG = {npc_template.iloc[:,1][row_count]} \n \n 1. Stand in front of the NPC and copy this command: \n \n /tag @e[type=npc, r=2] add {npc_template.iloc[:,1][row_count]} \n \n 2. Then paste this command: \n \n /dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]} \n \n ######################################################## \n "    
     text.append(string)
-
+    #Writes the reloadNPC.mcfunction file for each row in the excel file.
     NPC_reload = f"dialogue change @e[tag={npc_template.iloc[:,1][row_count]}] {npc_template.iloc[:,0][row_count]}"
     npcreload.append(NPC_reload)
-
     row_count = row_count + 1 # Increases the row count by 1
-    
     if row_count == scene_amount: # Tests to see if its the final row
         break
 ######################################### Final formatting #############################################################################################################################################
