@@ -76,7 +76,8 @@ for index, row in npc_template.iterrows(): # Runs through the rows and creates a
     npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("’", "'")
     npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("‘", "'")
     npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace(" ", "")
-    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("...", f"...")
+    npc_template.iloc[:,3][row_count] = npc_template.iloc[:,3][row_count].replace("...", " . . .")
+
 
     
     #writes the json file
