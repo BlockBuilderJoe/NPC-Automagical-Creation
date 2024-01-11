@@ -40,16 +40,19 @@ npcreload = [] #Prepares a list for the npc reload function.
 
 for index, row in npc_template.iterrows(): #Runs through the rows in the excel file
     if npc_template.iloc[:,0][row_count]: #Checks if the scene tag is empty
-        scene.append({ "scene_tag": npc_template.iloc[:,0][row_count]})
+        scene.append("scene_tag: " + npc_template.iloc[:,0][row_count])
 
     if npc_template.iloc[:,2][row_count]: #Checks if the npc name is empty
         translated_lines.append(npc_template.iloc[:,2][row_count] + "=")
-        scene.append({ "npc_name": {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]}})
+        scene.append("npc_name: " + {"rawtext": [{"translate": npc_template.iloc[:,2][row_count]}]})
 
     if npc_template.iloc[:,3][row_count]: #Checks if the npc text is empty
         translated_lines.append(npc_template.iloc[:,3][row_count] + "=")
-        scene.append({ "text": {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]}})
-
+        scene.append("text: " + {"rawtext": [{"translate": npc_template.iloc[:,3][row_count]}]})
+    if npc_template.iloc[:,4][row_count]: #Checks if the on open commands are empty
+        scene.append("on_open_commands: " + on_open_commands[row_count])
+    if npc_template.iloc[:,5][row_count]: #Checks if the on close commands are empty
+        scene.append("on_close_commands: " + on_close_commands[row_count])
     if npc_template.iloc[:,6][row_count]: #Checks if the button 1 text is empty
         translated_lines.append(npc_template.iloc[:,6][row_count] + "=")
         buttons.append({
@@ -96,7 +99,7 @@ for index, row in npc_template.iterrows(): #Runs through the rows in the excel f
             "commands": commands_6[row_count]
         })
     if buttons: #Checks if the buttons list is empty
-        scene.append({"buttons": buttons})
+        scene.append("buttons: " + buttons)
         buttons = []
     else:
         print("Empty row")
